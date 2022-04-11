@@ -4,15 +4,24 @@ from State import State
 from constants.TaxiSolver import POSSIBILITIES
 
 class TaxiSolver(State):
-    def __init__(self, operator, free, taxi_position, city_size, blocked_positions):
+    def __init__(self,
+        operator,
+        free,
+        taxi_position,
+        city_size,
+        blocked_positions, 
+        passenger_position):
         self.operator = operator
         self.free = free #has passenger?
         self.taxi_position = taxi_position #coordinate pair
         self.city_size = city_size #width and height (w = h)
         self.blocked_positions = blocked_positions #list of coordinate pair
+        self.passenger_position = passenger_position #coordinate pair
 
     def sucessors(self):
         next_nodes = list()
+        if (self.near_passenger() and self.free):
+            next_nodes.append(TaxiSolver("pickup", False, self.taxi_position, self.size, self.blocked_positions, self.passenger_position))
         for possibility in POSSIBILITIES:
             moviment = POSSIBILITIES[possibility]
             x = self.taxi_position[0] + moviment[0]
@@ -31,6 +40,11 @@ class TaxiSolver(State):
         for blocked_position in self.blocked_positions:
             if blocked_position == position:
                 return True
+        return False
+    
+    def near_passenger(self):
+        if (self.taxi_position == self.passenger_position):
+            return True
         return False
 
     def description(self):
