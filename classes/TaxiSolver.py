@@ -26,7 +26,7 @@ class TaxiSolver(State):
             moviment = POSSIBILITIES[possibility]
             x = self.taxi_position[0] + moviment[0]
             y = self.taxi_position[1] + moviment[1]
-            if self.check_valid_position([x, y]) and self.blocked_position([x, y]):
+            if self.check_valid_position([x, y]) and not(self.blocked_position([x, y])):
                 next_nodes.append(TaxiSolver(possibility, self.free, [x,y], self.size))
         return next_nodes
 
