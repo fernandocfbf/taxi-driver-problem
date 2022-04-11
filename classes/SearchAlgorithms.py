@@ -1,5 +1,5 @@
 from collections import deque
-from State import Node
+from classes.State import Node
 import logging
 logging.basicConfig(filename='search_algorithms.log', level=logging.DEBUG)
 
