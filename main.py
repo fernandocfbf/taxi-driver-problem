@@ -1,24 +1,16 @@
-from classes.SearchAlgorithms import AEstrela, BuscaGananciosa
-from classes.TaxiSolver import TaxiSolver
+from classes.MeuTaxi import MeuTaxi
 
-from constants.TaxiSolver import PROBLEM1, PROBLEM2, PROBLEM3, PROBLEM4
+import gym
 
-def main():
-    state = TaxiSolver(
-        operator = PROBLEM4["operator"],
-        free = PROBLEM4["free"],
-        taxi_position = PROBLEM4["taxi_position"],
-        city_size = PROBLEM4["city_size"],
-        blocked_positions = PROBLEM4["blocked_positions"], 
-        passenger_position = PROBLEM4["passenger_position"],
-        destination = PROBLEM4["destination"],
-    )
-    algorithm = AEstrela()
-    result = algorithm.search(state)
-    if result:
-        print(result.show_path())
-    else:
-        print("Couldn't find a solution!")
-
-if __name__ == '__main__':
-    main()
+env = gym.make("Taxi-v3").env
+state = env.reset()
+env.render()
+taxi = MeuTaxi(env.desc, env.decode(state))
+taxi.path()
+for step in taxi.path():
+    state, reward, done, info = env.step(step)
+    env.render()
+if done:
+    print("Soube encontrar a solucao correta")
+else:
+    print("Algo deu errado!")

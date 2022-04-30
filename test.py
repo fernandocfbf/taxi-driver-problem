@@ -1,6 +1,6 @@
 from classes.TaxiSolver import TaxiSolver
 from classes.SearchAlgorithms import AEstrela
-from constants.TaxiSolver import PROBLEM1, PROBLEM2, PROBLEM3, PROBLEM4
+from constants.Problems import PROBLEM1, PROBLEM2, PROBLEM3, PROBLEM4
 
 def test01():
     state = TaxiSolver(
@@ -14,7 +14,7 @@ def test01():
     )
     algorithm = AEstrela()
     result = algorithm.search(state)
-    assert result.show_path() == "  ; down ; right ; up ; pickup ; down"
+    assert result.show_path() == " ; down ; right ; up ; pickup ; down"
 
 def test02():
     state = TaxiSolver(
@@ -28,7 +28,7 @@ def test02():
     )
     algorithm = AEstrela()
     result = algorithm.search(state)
-    assert result.show_path() == "  ; down ; right ; right ; right ; right ; right ; right ; right ; down ; pickup ; right ; right ; down ; down ; down ; down ; down ; down ; down"
+    assert result.show_path() == " ; down ; right ; right ; right ; right ; right ; right ; right ; down ; pickup ; right ; right ; down ; down ; down ; down ; down ; down ; down"
 
 def test03():
     state = TaxiSolver(
@@ -42,7 +42,7 @@ def test03():
     )
     algorithm = AEstrela()
     result = algorithm.search(state)
-    assert result.show_path() == "  ; down ; right ; right ; right ; right ; right ; down ; down ; down ; pickup ; left ; left ; left ; left ; left ; up ; up ; up ; up"
+    assert result.show_path() == " ; down ; right ; right ; right ; right ; right ; down ; down ; down ; pickup ; left ; left ; left ; left ; left ; up ; up ; up ; up"
 
 def test04():
     state = TaxiSolver(
@@ -56,4 +56,4 @@ def test04():
     )
     algorithm = AEstrela()
     result = algorithm.search(state)
-    assert result.show_path() == "  ; down ; right ; right ; right ; right ; right ; down ; down ; down ; down ; down ; down ; down ; pickup ; left ; left ; left ; left ; left ; down"
+    assert result.show_path() == " ; down ; right ; right ; right ; right ; right ; down ; down ; down ; down ; down ; down ; down ; pickup ; left ; left ; left ; left ; left ; down"
